@@ -22,7 +22,6 @@ public class HomeController {
 
             model.addAttribute("fullEquation", firstOperand + " " + operatorSelect + " " + secondOperand);
             model.addAttribute("result", result);
-
         } catch (NullPointerException e) {
             System.out.println("Please enter a valid number");
         }
