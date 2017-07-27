@@ -16,13 +16,13 @@ public class HomeController {
         System.out.println(operatorSelect);
         System.out.println(secondOperand);
 
-        calculator(firstOperand, operatorSelect, secondOperand);
+        double result = calculator(firstOperand, operatorSelect, secondOperand);
 
         return "index";
     }
 
-    public void calculator(double firstOperand, String operator, double secondOperand) {
-        double result;
+    public double calculator(double firstOperand, String operator, double secondOperand) {
+        double result= 0;
         switch(operator) {
             case "add":
                 result = firstOperand + secondOperand;
@@ -47,5 +47,6 @@ public class HomeController {
             default:
                 break;
         }
+        return result;
     }
 }
