@@ -9,44 +9,53 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class HomeController {
 
     @RequestMapping("/")
-    public String index(@RequestParam(value = "firstOperand", required = false) double firstOperand,
+    public String index(@RequestParam(value = "firstOperand", required = false) Double firstOperand,
                         @RequestParam(value = "operatorSelect", required = false) String operatorSelect,
-                        @RequestParam(value = "secondOperand", required = false) double secondOperand){
-        System.out.println(firstOperand);
-        System.out.println(operatorSelect);
-        System.out.println(secondOperand);
+                        @RequestParam(value = "secondOperand", required = false) Double secondOperand,
+                        ModelMap model){
+        try {
+            System.out.println(firstOperand);
+            System.out.println(operatorSelect);
+            System.out.println(secondOperand);
 
-        double result = calculator(firstOperand, operatorSelect, secondOperand);
+            double result = calculator(firstOperand, operatorSelect, secondOperand);
 
+            model.addAttribute("fullEquation", firstOperand + " " + operatorSelect + " " + secondOperand);
+            model.addAttribute("result", result);
+
+        } catch (NullPointerException e) {
+            System.out.println("Please enter a valid number");
+        }
         return "index";
     }
 
-    public double calculator(double firstOperand, String operator, double secondOperand) {
+    public double calculator(Double firstOperand, String operator, Double secondOperand) {
         double result= 0;
-        switch(operator) {
-            case "add":
-                result = firstOperand + secondOperand;
-                System.out.println(firstOperand + "+" + secondOperand);
-                System.out.println(result);
-                break;
-            case "subtract":
-                result = firstOperand - secondOperand;
-                System.out.println(firstOperand + "-" + secondOperand);
-                System.out.println(result);
-                break;
-            case "multiply":
-                result = firstOperand * secondOperand;
-                System.out.println(firstOperand + "*" + secondOperand);
-                System.out.println(result);
-                break;
-            case "divide":
-                result = firstOperand / secondOperand;
-                System.out.println(firstOperand + "/" + secondOperand);
-                System.out.println(result);
-                break;
-            default:
-                break;
-        }
+            switch(operator) {
+                case "+":
+                    result = firstOperand + secondOperand;
+                    System.out.println(firstOperand + operator + secondOperand);
+                    System.out.println(result);
+                    break;
+                case "-":
+                    result = firstOperand - secondOperand;
+                    System.out.println(firstOperand + operator + secondOperand);
+                    System.out.println(result);
+                    break;
+                case "*":
+                    result = firstOperand * secondOperand;
+                    System.out.println(firstOperand + operator + secondOperand);
+                    System.out.println(result);
+                    break;
+                case "/":
+                    result = firstOperand / secondOperand;
+                    System.out.println(firstOperand + operator + secondOperand);
+                    System.out.println(result);
+                    break;
+                default:
+                    break;
+            }
         return result;
     }
 }
+

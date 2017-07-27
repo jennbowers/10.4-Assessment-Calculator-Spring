@@ -9,13 +9,17 @@
     <form action="/">
         <input type="text" name="firstOperand"/>
         <select name="operatorSelect" id="operator-select">
-            <option value="add">+</option>
-            <option value="subtract">-</option>
-            <option value="multiply">*</option>
-            <option value="divide">/</option>
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
         </select>
         <input type="text" name="secondOperand"/>
         <input type="submit" name="Calculate"/>
     </form>
+    <h3>Your Full Equation was: </h3>
+    <h3 th:text="${fullEquation}"></h3>
+    <h3>Your Result was:</h3>
+    <h3 th:text="${result}"></h3>
 </body>
 </html>
